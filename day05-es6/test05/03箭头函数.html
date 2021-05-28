@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+       /*  箭头函数命名：let fn=()=>{}
+                简写：1.如果参数只有一个的时候可以省略小括号，如果没有参数或是多个的则必须写小括号
+                        2.如果执行语句只有一个的话可以沈略花括号，默认返回这个执行的结果，相当于在前面加一个return
+
+                注意：1.箭头函数没有this，如果有则是外层的this
+                      2，不能当做构造函数使用
+                      3.没有arguments
+        */
+
+        /* symbol表示枚举（独一无二的值）
+            创建：Symbol(),不能用new
+            作用：可以当做对象的属性
+            注意：1.Symbol(“描述字符串”)中描述字符串的没有实际作用，只是个描述信息
+                    2.类型转换的时候，不能转数字
+                    3.如果把Symbol当做一个对象的属性和方法的时候，一定要用一个变量存储，否则定义的属性和方法没有办法使用
+
+        Set一种数据结构，类似于数组，但是成员都是唯一的，没有重复的值
+            Set本省是一构造函数，用来生成Set数据结构
+            Set函数可以接收一个数组（或是具有iterable接口的其他数据结构）作为参数用来初始化
+        Map类似于对象，键值对的形式
+         */
+
+
+        let s=Symbol();
+        let s1=Symbol("foo");
+        let s2=Symbol("hoo");
+        // 需求：让新增的属性和方法不和之前的冲突
+        // let name=Symbol("name")
+        // let todo=Symbol("todo");
+        // let obj={
+        //     name:"小王"
+        // };
+        // obj[name]="老王"
+        // console.log(obj);
+        // console.log(obj.name);
+        // console.log(obj[name]);
+        
+        // 用一个变量来存储
+        let obj1={
+            name:"livy",
+            age:18,
+        }
+       
+        let name=Symbol();
+        obj1[name]="zs"
+        // for in不能遍历出来，可以使用Object.getOwnPropertySymbols方法来拿
+        for(let key in obj1){
+            console.log(obj1[key])
+        }
+        console.log(Object.getOwnPropertySymbols(obj1));
+
+        let st=new Set([1,3,5,6,7,1,3,5,9]);
+        console.log(st);
+        console.log(st.size);
+        let st2=new Set(["a","b","c","d"])
+        // 和循环遍历相关的方法，keys和valus方法行为是一致的
+        console.log(st2.keys());//得到是迭代器
+        for(let key of st2.keys()){
+            console.log(key);
+            
+        }
+        
+        
+   </script>
+</body>
+</html>

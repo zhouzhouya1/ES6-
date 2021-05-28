@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <script>
+    //   1.解构赋值的方法
+    // let [a,b,c,d]=[1,2,3,4]
+    // console.log(a,b,c,d)
+    // let [g,h, ...rest]=[10,11,22,1,2,3,4,4];
+    // console.log(g,h,rest)//返回的rest是一个数组
+
+    // // 2.对象的解构：变量名必须与属性同名，才能取到正确的值
+
+    // let {foo,hoo}={foo:"hello",hoo:"world"};
+    // console.log(foo,hoo)
+    // // 3.对对象的属性进行重命名
+    // let {foo:c,hoo:d}={foo:1,hoo:2}
+    // console.log(foo,hoo);//报错,对对象重名，改变了这个值.
+    // console.log(c,d)//1 2
+    // let obj={foo:"a",hoo:"b"};
+    // let {foo,hoo}=obj;
+    // let obj1={foo:1,hoo:2};
+    // // 因为对象解构key必须要和变量名一致才可解构，为了重复，要对对象的key重命名
+    // let { foo:newfoo,hoo:newhoo}=obj1
+
+    // 练习：如果想要获取数组的第一个数和最后一个数怎么办
+    let arr=[1,2,4,5,7];
+    let {0:first,[arr.length-1]:last}=arr;
+    console.log(first,last)
+    // 对象解构赋值可以设置默认值
+    let{x,y=10}={x:1};
+    console.log(x,y)
+    // 3.解构赋值的应用
+    function fn(){
+        return [1,2,3,4]
+    }
+    let [a,b,c,d]=fn()
+    // 3.1函数传函数
+    function fn([x,y,z]){
+        console.log(x,y,z)
+    }
+    function fn({x,y,z}){
+        console.log(x,y,z)
+    }
+    // 3.2.json数据的提取
+    let json={
+        name:"livy",
+        sex:"nv",
+        age:18
+    }
+    let {name,sex,age}=json;
+  </script>  
+</body>
+</html>

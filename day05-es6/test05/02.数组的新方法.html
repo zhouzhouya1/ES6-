@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.复制数组
+        // let arr=[1,2,4];
+        // let newarr=[...arr]
+
+        // // 2.合并数组
+        // let arr1=[...arr,...newarr]
+
+        // // 3.字符串转数组
+        // let arr2=[..."hello"]
+        // console.log(arr2)
+
+        // // 数组的新方法，Array.form().把伪数组变成数组
+        // let olis=document.getElementsByTagName("li")//得到是一个为数字
+        // let newLis=Array.from(olis)
+        //    find()和findeindex()常用
+        // find是找出第一个符合条件的数组成员，并且返回出去该成员，他是一个回调函数findindex是找到符合条件的第一个下标
+
+        let arr = [1, 3, 4, "4"];
+        let newarr = arr.find(function (item, index, arr) {
+            return typeof item === "string"
+        })
+        console.log(newarr)
+        // includes()返回是一个布尔值，表示某个数组是否包含给定的值
+        let arr6=[1,2,3,4];
+        console.log(arr6.includes(1));
+        console.log(arr6.includes(["a"]))
+
+        // 函数参数默认值
+        function fn1(a,b){
+            b=b||"world"
+        }
+        fn1("hello","")
+        fn("hello",)
+        // 可以写成这个样子ES6添加默认值
+        function fn2(a,b="world"){
+            console.log(a,b)
+        }
+        // 剩余参数rest
+        function fn3(...arguments){
+            fn3(1,2,3,4)
+        }
+        // 和普通函数混合使用的时候，需要放在参数的最后
+        function fn4(a,b,...agr){
+            console.log(a,b,arg)
+        }
+        fn4(1,2,3,4,567,8)
+    </script>
+</body>
+
+</html>

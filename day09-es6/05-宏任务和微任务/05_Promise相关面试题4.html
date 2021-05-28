@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>12_Promise相关面试题4</title>
+  </head>
+  <body>
+    <script>
+      /* 
+				宏:[0]
+				微:[  5]
+        控制台： 1 7 2 3 8 4  6 5 0
+
+			*/
+
+      /* 
+      代码执行的过程：
+       1.定时器执行，放到宏队列中
+       2.创建一个Promise对象，同步代码执行 1
+       3.把改变成功的promise对象then放在微队列中，后面的并列的then没有激活
+
+       */
+      setTimeout(() => {
+        console.log('0')
+      }, 0)
+
+
+// 当返回一个成功的promise对象的时候才把下一步的要执行的代码放在微任务队列中
+      new Promise((resolve, reject) => {
+        console.log('1')
+        resolve()
+      })
+      // then只有返回成功的promise的时候才会放到微队列中
+        .then(() => {
+          
+          console.log('2')
+          new Promise((resolve, reject) => {
+            console.log('3')
+            resolve()
+          })
+            .then(() => {
+              console.log('4')//执行这个一步的时候会返回一个成功的promise对象。
+              //此时的外面的她很返回出去一个成功的promise自己也是成功的promise，激活了外面下一个的promise对象，所以6比5先执行
+            })
+            .then(() => {
+              console.log('5')
+            })
+        })
+        .then(() => {
+          console.log('6')//只有前面返回一个成功的promise对象的时候才执行
+        })
+
+      new Promise((resolve, reject) => {
+        console.log('7')
+        resolve()
+      }).then(() => {
+        console.log('8')
+      })
+    </script>
+  </body>
+</html>
